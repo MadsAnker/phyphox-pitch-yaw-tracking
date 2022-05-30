@@ -1,3 +1,5 @@
+PHYPHOXURL = "http://192.168.158.240"
+
 Dw.EasyCam.prototype.apply = function(n) {
 		var o = this.cam;
 		n = n || o.renderer,
@@ -52,7 +54,7 @@ function nextPoint(prevPoint, point, accelPoint) {
 var time = 0;
 async function getData() {
 
-	let url = `http://192.168.10.51/get?lin_acc_time=${time}&lin_accX=${time}|lin_acc_time&lin_accY=${time}|lin_acc_time&lin_accZ=${time}|lin_acc_time&accX=${time}|acc_time&accY=${time}|acc_time&accZ=${time}|acc_time&gyroX=${time}|gyro_time&gyroY=${time}|gyro_time&gyroZ=${time}|gyro_time&gyro_time=${time}&acc_time=${time}`;
+	let url = `${PHYPHOXURL}/get?lin_acc_time=${time}&lin_accX=${time}|lin_acc_time&lin_accY=${time}|lin_acc_time&lin_accZ=${time}|lin_acc_time&accX=${time}|acc_time&accY=${time}|acc_time&accZ=${time}|acc_time&gyroX=${time}|gyro_time&gyroY=${time}|gyro_time&gyroZ=${time}|gyro_time&gyro_time=${time}&acc_time=${time}`;
 	let resp = await fetch(url);
 	let json = await resp.json();
 	let acc = [];
@@ -135,7 +137,7 @@ function setup() {
 	createCanvas(800, 800, WEBGL);
 	easycam = createEasyCam({distance: 500});
 	getData();
-	setInterval(update, 50);
+	setInterval(update, 100);
 	font = loadFont("./src/OpenSans-Regular.otf");
 	textFont(font);
 	textSize(100);
